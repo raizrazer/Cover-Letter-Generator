@@ -17,7 +17,7 @@ import { addOutput } from "./app/slicers/outputsSlice";
 
 import logo from "./images/mylogo.png";
 
-const fontRoboto = `'Roboto', sans-serif;`
+const fontRoboto = `'Roboto', sans-serif;`;
 
 function App() {
   const dispatch = useDispatch();
@@ -82,7 +82,11 @@ function App() {
             src={logo}
             alt="DaRudeMonkie's logo"
           ></img>
-          <Typography sx={{fontFamily:fontRoboto}} align="center" variant="h5">
+          <Typography
+            sx={{ fontFamily: fontRoboto }}
+            align="center"
+            variant="h5"
+          >
             Cover Letter Generator
           </Typography>
           <Box sx={{ display: "flex", gap: "20px" }}>
@@ -133,8 +137,11 @@ function App() {
         <Grid container sx={{ padding: "0px 20px" }}>
           <Grid item xs={12} md={3} sx={{ padding: "20px 5px" }}>
             <Box>
-              <Typography align="center" variant="h5">
+              <Typography align="left" variant="h6">
                 Input Fields
+              </Typography>
+              <Typography align="left" variant="caption">
+                Enter your inputs here.
               </Typography>
             </Box>
             <Box
@@ -167,14 +174,38 @@ function App() {
             xs={12}
             md={6}
           >
-            <InputMessage
-              content={message}
-              value={"Enter $[id] to change the values"}
-            />
+            <Box>
+              <Typography align="left" variant="h6">
+                Cover Letter
+              </Typography>
+              <Typography align="left" variant="caption">
+                Enter your cover letter with variable/id like $company_name...etc.
+              </Typography>
+            </Box>
+            <Box
+              sx={{
+                padding:"20px 0px"
+              }}
+            >
+              <InputMessage
+                content={message}
+                value={"Enter $[id] to change the values"}
+              />
+            </Box>
           </Grid>
           <Grid item xs={12} md={3} sx={{ padding: "20px 20px" }}>
+            <Box>
+              <Typography align="left" variant="h6">
+                Generated Letter(s)
+              </Typography>
+              <Typography align="left" variant="caption">
+                Copy or Download the Generated letter.
+              </Typography>
+            </Box>
+            <Box>
             {companyButtons}
             {/* <CompanyButton id={12} content={"Something"}  companyName={"Monkie's Media"}></CompanyButton> */}
+            </Box>
           </Grid>
         </Grid>
       </Box>
