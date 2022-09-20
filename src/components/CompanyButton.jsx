@@ -4,7 +4,7 @@ import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import { IconButton, Tooltip, Typography, Box } from "@mui/material";
 
 import { deleteOutput } from "../app/slicers/outputsSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
@@ -25,22 +25,56 @@ const len = colors.length;
 const CompanyButton = ({ companyName, id, content }) => {
   const color = colors[id % len];
   const dispatch = useDispatch();
-  const printContent = {
+
+  const messages = useSelector((state) => state.outputs.value);
+
+  var docDefinition = {
+    pageSize: "A5",
+    pageMargins: [30, 60, 30, 60],
+    info: {
+      title: `Cover Letter ${messages[id].companyname}`,
+      author: "Cover Letter generator by Monkie",
+      subject: `Cover Letter for ${messages[id].companyname}`,
+      keywords: "cover letter, resume letter",
+    },
     content: [
       {
-        stack: [content],
+        text: [`Cover Letter - ${messages[id].companyname}`],
+        style: "head",
+      },
+      {
+        text: [content],
         style: "header",
       },
     ],
     styles: {
-      header: {
+      head: {
         fontSize: 14,
+        bold: true,
+        alignment: "center",
+        margin: [0, 20, 0, 80],
+      },
+      header: {
+        fontSize: 10,
         bold: false,
         alignment: "left",
-        margin: [0, 100, 0, 80],
       },
     },
   };
+
+  const copyToClipboard = str => {
+    const el = document.createElement('textarea');
+    el.value = str;
+    el.setAttribute('readonly', '');
+    el.style.position = 'absolute';
+    el.style.left = '-9999px';
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+  };
+
+
   return (
     <div>
       <Box
@@ -53,7 +87,7 @@ const CompanyButton = ({ companyName, id, content }) => {
           padding: "0px 0px",
           margin: "20px 0px",
           justifyContent: "space-evenly",
-          borderRadius: "2px",
+          borderRadius: "6px",
         }}
       >
         <Typography variant="body1">{companyName}</Typography>
@@ -62,8 +96,12 @@ const CompanyButton = ({ companyName, id, content }) => {
             <IconButton
               aria-label="copy"
               onClick={() => {
-                navigator.clipboard.writeText(content);
-                console.log("Clicked Copy");
+                // Copy the text inside the text field
+                navigator.clipboard.writeText(messages[id].message);
+                copyToClipboard(messages[id].message.toString())
+                console.log(messages[id].message);
+                // console.log("Clicked Copy");
+                // console.log(messages[id].companyname);
               }}
             >
               <ContentCopyIcon />
@@ -73,8 +111,8 @@ const CompanyButton = ({ companyName, id, content }) => {
             <IconButton
               aria-label="download"
               onClick={() => {
-                pdfMake.createPdf(printContent).open();
-                console.log("Clicked Download");
+                pdfMake.createPdf(docDefinition).open();
+                // console.log("Clicked Download");
               }}
             >
               <DownloadIcon />
@@ -85,7 +123,7 @@ const CompanyButton = ({ companyName, id, content }) => {
               aria-label="delete"
               onClick={() => {
                 dispatch(deleteOutput({ id }));
-                console.log("Delete");
+                // console.log("Delete");
               }}
             >
               <DeleteIcon />

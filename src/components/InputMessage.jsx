@@ -15,6 +15,7 @@ const InputMessage = ({value, content}) => {
                 id="outlined-multiline-static"
                 label={value}
                 multiline
+                minRows={20}
                 fullWidth
                 value={message}
                 onChange={handleChange}

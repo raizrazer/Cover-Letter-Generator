@@ -172,7 +172,7 @@ function App() {
               value={"Enter $[id] to change the values"}
             />
           </Grid>
-          <Grid item xs={12} md={3} sx={{ padding: "20px 5px" }}>
+          <Grid item xs={12} md={3} sx={{ padding: "20px 20px" }}>
             {companyButtons}
             {/* <CompanyButton id={12} content={"Something"}  companyName={"Monkie's Media"}></CompanyButton> */}
           </Grid>
