@@ -21,6 +21,7 @@ const styles = {
   fontStyle:{
     fontFamily:`'Roboto', sans-serif`,
   }
+
 }
 
 function App() {
@@ -163,7 +164,7 @@ function App() {
                 <InputBox value={"Company Name"} />
                 <InputBox value={"HR"} /> */}
               <AddMoreInput />
-              <Tooltip title="Delete">
+              <Tooltip title="Generate the Cover Letter">
                 <Button
                   variant="contained"
                   sx={{ margin: "20px 0px" }}
