@@ -17,7 +17,11 @@ import { addOutput } from "./app/slicers/outputsSlice";
 
 import logo from "./images/mylogo.png";
 
-const fontRoboto = `'Roboto', sans-serif;`;
+const styles = {
+  fontStyle:{
+    fontFamily:`'Roboto', sans-serif`,
+  }
+}
 
 function App() {
   const dispatch = useDispatch();
@@ -83,7 +87,7 @@ function App() {
             alt="DaRudeMonkie's logo"
           ></img>
           <Typography
-            sx={{ fontFamily: fontRoboto }}
+            className={styles.fontStyle}
             align="center"
             variant="h5"
           >
