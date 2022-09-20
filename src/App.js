@@ -134,8 +134,8 @@ function App() {
         </AppBar>
       </Box>
       <Box>
-        <Grid container sx={{ padding: "0px 20px" }}>
-          <Grid item xs={12} md={3} sx={{ padding: "20px 5px" }}>
+        <Grid container sx={{ padding: "0px 0px" }}>
+          <Grid item xs={12} md={3} sx={{ padding: "20px 20px" }}>
             <Box>
               <Typography align="left" variant="h6">
                 Input Fields
@@ -159,13 +159,15 @@ function App() {
                 <InputBox value={"Company Name"} />
                 <InputBox value={"HR"} /> */}
               <AddMoreInput />
-              <Button
-                variant="contained"
-                sx={{ margin: "20px 0px" }}
-                onClick={handleClick}
-              >
-                Add Company
-              </Button>
+              <Tooltip title="Delete">
+                <Button
+                  variant="contained"
+                  sx={{ margin: "20px 0px" }}
+                  onClick={handleClick}
+                >
+                  Generate Letter
+                </Button>
+              </Tooltip>
             </Box>
           </Grid>
           <Grid
@@ -179,12 +181,13 @@ function App() {
                 Cover Letter
               </Typography>
               <Typography align="left" variant="caption">
-                Enter your cover letter with variable/id like $company_name...etc.
+                Enter your cover letter with variable/id like
+                $company_name...etc.
               </Typography>
             </Box>
             <Box
               sx={{
-                padding:"20px 0px"
+                padding: "20px 0px",
               }}
             >
               <InputMessage
@@ -203,8 +206,8 @@ function App() {
               </Typography>
             </Box>
             <Box>
-            {companyButtons}
-            {/* <CompanyButton id={12} content={"Something"}  companyName={"Monkie's Media"}></CompanyButton> */}
+              {companyButtons}
+              {/* <CompanyButton id={12} content={"Something"}  companyName={"Monkie's Media"}></CompanyButton> */}
             </Box>
           </Grid>
         </Grid>

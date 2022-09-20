@@ -42,7 +42,6 @@ function InputBox({ value, multilined ,id}) {
           {inputValue === "" ? value : inputs[id].id}
         </InputLabel>
         <Input
-          required
           id="component-helper"
           value={inputValue}
           onChange={handleChange}
